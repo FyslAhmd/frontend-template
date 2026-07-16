@@ -13,6 +13,76 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import React, { useState } from 'react';
+import { BaseModal } from '@/components/ui/base-modal';
+import { Button } from '@/components/ui/button';
+
+const UserActions = ({ user }: { user: User }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  return (
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger className="h-8 w-8 p-0 flex items-center justify-center rounded-md hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+          <span className="sr-only">Open menu</span>
+          <MoreHorizontal className="h-4 w-4" />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuGroup>
+            <DropdownMenuLabel className="font-semibold text-xs">Actions</DropdownMenuLabel>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem onClick={() => navigator.clipboard.writeText(user.id)}>
+            Copy user ID
+          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => setIsModalOpen(true)}>
+            View user details
+          </DropdownMenuItem>
+          <DropdownMenuItem className="text-destructive focus:text-destructive focus:bg-destructive/10">
+            Delete user
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <BaseModal
+        title="User Details"
+        description={`Details for ${user.name}`}
+        isOpen={isModalOpen}
+        onClose={setIsModalOpen}
+        footer={
+          <Button variant="outline" onClick={() => setIsModalOpen(false)}>
+            Close
+          </Button>
+        }
+      >
+        <div className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <p className="text-sm font-medium text-muted-foreground">ID</p>
+              <p className="font-semibold">{user.id}</p>
+            </div>
+            <div>
+              <p className="text-sm font-medium text-muted-foreground">Name</p>
+              <p className="font-semibold">{user.name}</p>
+            </div>
+            <div>
+              <p className="text-sm font-medium text-muted-foreground">Email</p>
+              <p className="font-semibold">{user.email}</p>
+            </div>
+            <div>
+              <p className="text-sm font-medium text-muted-foreground">Role</p>
+              <p className="font-semibold">{user.role}</p>
+            </div>
+            <div>
+              <p className="text-sm font-medium text-muted-foreground">Status</p>
+              <p className="font-semibold">{user.status}</p>
+            </div>
+          </div>
+        </div>
+      </BaseModal>
+    </>
+  );
+};
 
 export const columns: ColumnDef<User>[] = [
   {
@@ -84,30 +154,6 @@ export const columns: ColumnDef<User>[] = [
   },
   {
     id: 'actions',
-    cell: ({ row }) => {
-      const user = row.original;
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger className="h-8 w-8 p-0 flex items-center justify-center rounded-md hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-            <span className="sr-only">Open menu</span>
-            <MoreHorizontal className="h-4 w-4" />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuGroup>
-              <DropdownMenuLabel className="font-semibold text-xs">Actions</DropdownMenuLabel>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => navigator.clipboard.writeText(user.id)}>
-              Copy user ID
-            </DropdownMenuItem>
-            <DropdownMenuItem>View user details</DropdownMenuItem>
-            <DropdownMenuItem className="text-destructive focus:text-destructive focus:bg-destructive/10">
-              Delete user
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
+    cell: ({ row }) => <UserActions user={row.original} />,
   },
 ];
