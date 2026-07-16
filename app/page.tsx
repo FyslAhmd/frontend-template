@@ -10,7 +10,7 @@ export default function Home() {
 
       {/* Navbar */}
       <header className="relative z-10 flex items-center justify-between px-8 py-6 max-w-7xl mx-auto">
-        <div className="text-2xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+        <div className="text-2xl font-bold tracking-tighter bg-clip-text text-transparent bg-linear-to-r from-blue-400 to-purple-500">
           Nexus
         </div>
         <nav className="hidden md:flex space-x-8 text-sm font-medium text-neutral-300">
@@ -38,7 +38,7 @@ export default function Home() {
 
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8">
           Build faster with <br className="hidden md:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-purple-500 to-pink-500">
             stunning aesthetics.
           </span>
         </h1>
@@ -76,9 +76,9 @@ export default function Home() {
           ].map((feature, i) => (
             <div
               key={i}
-              className="group p-8 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-lg hover:bg-white/[0.08] hover:-translate-y-1 transition-all duration-500 cursor-default"
+              className="group p-8 rounded-3xl bg-white/3 border border-white/10 backdrop-blur-lg hover:bg-white/8 hover:-translate-y-1 transition-all duration-500 cursor-default"
             >
-              <div className="w-12 h-12 mb-6 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+              <div className="w-12 h-12 mb-6 rounded-2xl bg-linear-to-br from-blue-500/20 to-purple-500/20 border border-white/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
                 <div className="w-4 h-4 bg-white/80 rounded-full shadow-[0_0_15px_rgba(255,255,255,0.5)]"></div>
               </div>
               <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
