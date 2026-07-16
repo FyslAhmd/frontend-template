@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Modern Next.js Frontend Template
 
-## Getting Started
+A production-ready, batteries-included Next.js 16 frontend template designed to save developers 2-3 days of initial setup. It comes pre-configured with the best modern tools for styling, state management, and developer experience.
 
-First, run the development server:
+## 🚀 Features & Setup Progress
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Phase 1: Core Architecture & Developer Experience (DX) - ✅ Completed
+
+- **Folder Structure**: Scalable organization (`components/`, `hooks/`, `lib/`, `store/`, `types/`, `services/`).
+- **Code Quality**:
+  - **Prettier** for opinionated code formatting.
+  - **Husky & Lint-Staged** for automated pre-commit hooks (ensures no unformatted or lint-failing code gets committed).
+- **UI & Styling Foundation**:
+  - **Tailwind CSS v4** setup.
+  - **Shadcn UI** initialized for customizable, unstyled, and accessible components.
+  - **Lucide React** for beautiful, consistent icons.
+  - **Next-Themes** for seamless Dark/Light mode support (`ThemeProvider` integrated into root layout).
+  - **Sonner** integrated into the root layout for global toast notifications.
+
+### Phase 2: State Management & API Integration - ⏳ Pending
+
+_(To be implemented)_
+
+### Phase 3: Essential Layouts, Auth Flow & Reusable UI - ⏳ Pending
+
+_(To be implemented)_
+
+### Phase 4: Testing, Performance & Documentation - ⏳ Pending
+
+_(To be implemented)_
+
+---
+
+## 📂 Folder Structure
+
+```text
+.
+├── app/               # Next.js App Router pages and layouts
+├── components/        # Reusable UI components
+│   ├── ui/            # Shadcn UI primitive components
+│   └── theme-provider.tsx # Dark/Light mode provider
+├── hooks/             # Custom React hooks
+├── lib/               # Utility functions (e.g., utils.ts for Tailwind merge)
+├── services/          # API calls and external service integrations
+├── store/             # Global state management
+└── types/             # TypeScript type definitions
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Install dependencies:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   npm install
+   ```
 
-## Learn More
+2. Start the development server:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
