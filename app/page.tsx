@@ -10,9 +10,6 @@ export default function Home() {
 
       {/* Navbar */}
       <header className="relative z-10 flex items-center justify-between px-8 py-6 max-w-7xl mx-auto">
-        <div className="text-2xl font-bold tracking-tighter bg-clip-text text-transparent bg-linear-to-r from-blue-400 to-purple-500">
-          Nexus
-        </div>
         <nav className="hidden md:flex space-x-8 text-sm font-medium text-neutral-300">
           <a href="#features" className="hover:text-white transition-colors duration-300">
             Features

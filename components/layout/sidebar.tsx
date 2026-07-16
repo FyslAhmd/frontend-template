@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { LayoutDashboard, Users, Settings } from 'lucide-react';
@@ -19,9 +20,16 @@ export function Sidebar() {
   if (!sidebarOpen) return null;
 
   return (
-    <aside className="w-64 flex flex-col border-r bg-card h-screen sticky top-0 hidden md:flex">
-      <div className="h-16 flex items-center px-6 border-b">
-        <h1 className="text-2xl font-bold tracking-tight text-primary">Nexus</h1>
+    <aside className="w-64 flex flex-col border-r bg-card h-screen sticky top-0 md:flex">
+      <div className="h-16 flex items-center gap-3 px-6 border-b">
+        <Image
+          src="/logo/logo.png"
+          alt="Logo"
+          width={92}
+          height={42}
+          className="object-contain"
+          priority
+        />
       </div>
       <nav className="flex-1 px-4 py-6 space-y-2">
         {navigation.map((item) => {
