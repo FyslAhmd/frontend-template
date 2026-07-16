@@ -1,69 +1,118 @@
 'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useState } from 'react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+} from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import Link from 'next/link';
 
 export default function LoginPage() {
   const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleDemoLogin = (role: string) => {
-    // Set cookie for Next.js Middleware route protection
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Simple logic to determine role from demo email
+    let role = 'user';
+    if (email.includes('admin')) role = 'admin';
+    else if (email.includes('manager')) role = 'manager';
+
     document.cookie = `auth_token=${role}; path=/; max-age=86400`;
-    // Set local storage for client-side components use
     localStorage.setItem('user_role', role);
 
     toast.success(`Successfully logged in as ${role}`);
     router.push('/dashboard');
   };
 
+  const fillDemoCredentials = (role: 'admin' | 'manager' | 'user') => {
+    setEmail(`${role}@example.com`);
+    setPassword(`${role}123`);
+    toast.info(`Filled with ${role} credentials`);
+  };
+
   return (
-    <Card className="border-white/10 bg-black/40 backdrop-blur-xl text-white shadow-2xl">
-      <CardHeader className="space-y-2 text-center pb-8">
-        <CardTitle className="text-3xl font-bold tracking-tight">Welcome Back</CardTitle>
-        <CardDescription className="text-neutral-400 text-base">
-          Choose a demo account to sign in
-        </CardDescription>
+    <Card className="w-full shadow-lg border-muted">
+      <CardHeader className="space-y-1 text-center">
+        <CardTitle className="text-2xl font-bold tracking-tight">Welcome Back</CardTitle>
+        <CardDescription>Enter your email and password to sign in</CardDescription>
       </CardHeader>
-      <CardContent className="space-y-6">
-        <div className="space-y-3">
-          <Button
-            onClick={() => handleDemoLogin('admin')}
-            className="w-full h-12 text-base bg-blue-600 hover:bg-blue-500 transition-colors"
-          >
-            Login as Admin
+      <CardContent className="space-y-4">
+        <form onSubmit={handleLogin} className="space-y-4">
+          <div className="space-y-2 text-left">
+            <Label htmlFor="email">Email</Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="name@example.com"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="space-y-2 text-left">
+            <div className="flex items-center justify-between">
+              <Label htmlFor="password">Password</Label>
+              <Link
+                href="/forgot-password"
+                className="text-sm font-medium text-primary hover:underline"
+              >
+                Forgot password?
+              </Link>
+            </div>
+            <Input
+              id="password"
+              type="password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <Button type="submit" className="w-full">
+            Sign In
           </Button>
-          <Button
-            onClick={() => handleDemoLogin('manager')}
-            className="w-full h-12 text-base bg-purple-600 hover:bg-purple-500 transition-colors"
-          >
-            Login as Manager
-          </Button>
-          <Button
-            onClick={() => handleDemoLogin('user')}
-            className="w-full h-12 text-base bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 transition-colors"
-          >
-            Login as User
-          </Button>
+        </form>
+
+        <div className="relative">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t" />
+          </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-card px-2 text-muted-foreground">Or fill demo credentials</span>
+          </div>
         </div>
 
-        <div className="text-center text-sm text-neutral-400 pt-4 space-y-4 flex flex-col border-t border-white/10">
-          <Link href="/forgot-password" className="hover:text-white transition-colors">
-            Forgot your password?
-          </Link>
-          <p>
-            Don&apos;t have an account?{' '}
-            <Link
-              href="/register"
-              className="text-blue-400 hover:text-blue-300 font-semibold transition-colors"
-            >
-              Sign up
-            </Link>
-          </p>
+        <div className="grid grid-cols-3 gap-2">
+          <Button variant="outline" size="sm" onClick={() => fillDemoCredentials('admin')}>
+            Admin
+          </Button>
+          <Button variant="outline" size="sm" onClick={() => fillDemoCredentials('manager')}>
+            Manager
+          </Button>
+          <Button variant="outline" size="sm" onClick={() => fillDemoCredentials('user')}>
+            User
+          </Button>
         </div>
       </CardContent>
+      <CardFooter className="flex flex-col border-t pt-6">
+        <div className="text-center text-sm text-muted-foreground">
+          Don&apos;t have an account?{' '}
+          <Link href="/register" className="font-semibold text-primary hover:underline">
+            Sign up
+          </Link>
+        </div>
+      </CardFooter>
     </Card>
   );
 }

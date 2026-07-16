@@ -1,7 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+} from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -32,14 +39,14 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <Card className="border-white/10 bg-black/40 backdrop-blur-xl text-white shadow-2xl">
-      <CardHeader className="space-y-2 text-center pb-6">
-        <CardTitle className="text-3xl font-bold tracking-tight">
+    <Card className="w-full shadow-lg border-muted">
+      <CardHeader className="space-y-1 text-center">
+        <CardTitle className="text-2xl font-bold tracking-tight">
           {step === 1 && 'Reset Password'}
           {step === 2 && 'Verify Code'}
           {step === 3 && 'New Password'}
         </CardTitle>
-        <CardDescription className="text-neutral-400 text-base">
+        <CardDescription>
           {step === 1 && 'Enter your email to receive a verification code'}
           {step === 2 && 'Enter the 6-digit code sent to your email'}
           {step === 3 && 'Create a new secure password'}
@@ -47,97 +54,61 @@ export default function ForgotPasswordPage() {
       </CardHeader>
       <CardContent>
         {step === 1 && (
-          <form onSubmit={handleEmailSubmit} className="space-y-5">
+          <form onSubmit={handleEmailSubmit} className="space-y-4">
             <div className="space-y-2 text-left">
-              <Label htmlFor="email" className="text-neutral-300">
-                Email Address
-              </Label>
-              <Input
-                id="email"
-                type="email"
-                required
-                placeholder="name@example.com"
-                className="bg-neutral-900/50 border-neutral-800 focus:border-blue-500 h-11"
-              />
+              <Label htmlFor="email">Email Address</Label>
+              <Input id="email" type="email" required placeholder="name@example.com" />
             </div>
-            <Button
-              type="submit"
-              className="w-full h-11 bg-blue-600 hover:bg-blue-500 transition-colors"
-            >
+            <Button type="submit" className="w-full">
               Send Reset Code
             </Button>
           </form>
         )}
 
         {step === 2 && (
-          <form onSubmit={handleOtpSubmit} className="space-y-5">
+          <form onSubmit={handleOtpSubmit} className="space-y-4">
             <div className="space-y-2 text-left">
-              <Label htmlFor="otp" className="text-neutral-300">
-                Verification Code
-              </Label>
+              <Label htmlFor="otp">Verification Code</Label>
               <Input
                 id="otp"
                 required
                 placeholder="123456"
                 maxLength={6}
-                className="bg-neutral-900/50 border-neutral-800 focus:border-blue-500 h-11 text-center tracking-widest text-xl font-mono"
+                className="text-center tracking-widest text-xl font-mono"
               />
             </div>
-            <Button
-              type="submit"
-              className="w-full h-11 bg-blue-600 hover:bg-blue-500 transition-colors"
-            >
+            <Button type="submit" className="w-full">
               Verify Code
             </Button>
-            <Button
-              type="button"
-              variant="ghost"
-              onClick={() => setStep(1)}
-              className="w-full h-11 text-neutral-400 hover:text-white transition-colors"
-            >
+            <Button type="button" variant="ghost" onClick={() => setStep(1)} className="w-full">
               Back to Email
             </Button>
           </form>
         )}
 
         {step === 3 && (
-          <form onSubmit={handlePasswordSubmit} className="space-y-5">
+          <form onSubmit={handlePasswordSubmit} className="space-y-4">
             <div className="space-y-2 text-left">
-              <Label htmlFor="new-password" className="text-neutral-300">
-                New Password
-              </Label>
-              <Input
-                id="new-password"
-                type="password"
-                required
-                className="bg-neutral-900/50 border-neutral-800 focus:border-blue-500 h-11"
-              />
+              <Label htmlFor="new-password">New Password</Label>
+              <Input id="new-password" type="password" required />
             </div>
             <div className="space-y-2 text-left">
-              <Label htmlFor="confirm-password" className="text-neutral-300">
-                Confirm Password
-              </Label>
-              <Input
-                id="confirm-password"
-                type="password"
-                required
-                className="bg-neutral-900/50 border-neutral-800 focus:border-blue-500 h-11"
-              />
+              <Label htmlFor="confirm-password">Confirm Password</Label>
+              <Input id="confirm-password" type="password" required />
             </div>
-            <Button
-              type="submit"
-              className="w-full h-11 bg-blue-600 hover:bg-blue-500 transition-colors mt-2"
-            >
+            <Button type="submit" className="w-full mt-2">
               Update Password
             </Button>
           </form>
         )}
+      </CardContent>
 
-        {step === 1 && (
-          <div className="text-center text-sm text-neutral-400 mt-6 pt-6 border-t border-white/10">
+      {step === 1 && (
+        <CardFooter className="flex flex-col border-t pt-6">
+          <div className="text-center text-sm text-muted-foreground">
             <Link
               href="/login"
-              className="hover:text-white transition-colors flex items-center justify-center gap-2"
+              className="flex items-center justify-center gap-2 hover:text-primary transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -155,8 +126,8 @@ export default function ForgotPasswordPage() {
               Back to login
             </Link>
           </div>
-        )}
-      </CardContent>
+        </CardFooter>
+      )}
     </Card>
   );
 }

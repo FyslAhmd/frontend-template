@@ -9,27 +9,25 @@ export default function DashboardPage() {
   const [role, setRole] = useState<string | null>(null);
 
   useEffect(() => {
-    // Read from localStorage to showcase the demo credentials feature
     const savedRole = localStorage.getItem('user_role');
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setRole(savedRole);
   }, []);
 
   const handleLogout = () => {
-    // Clear cookie (which middleware uses) and localStorage
     document.cookie = 'auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
     localStorage.removeItem('user_role');
     router.push('/login');
   };
 
   return (
-    <div className="min-h-screen bg-neutral-950 p-8 flex flex-col items-start gap-6 text-white">
+    <div className="min-h-screen bg-background p-8 flex flex-col items-start gap-6 text-foreground">
       <h1 className="text-4xl font-extrabold tracking-tight">Dashboard</h1>
-      <div className="px-4 py-2 bg-neutral-900 rounded-full border border-neutral-800 text-sm">
+      <div className="px-4 py-2 bg-muted rounded-full border text-sm">
         Logged in as:{' '}
-        <span className="font-semibold text-blue-400 capitalize">{role || 'User'}</span>
+        <span className="font-semibold text-primary capitalize">{role || 'User'}</span>
       </div>
-      <p className="text-neutral-400 max-w-md leading-relaxed">
+      <p className="text-muted-foreground max-w-md leading-relaxed">
         This is a protected route. Only authenticated users can see this page. If you log out, you
         will be redirected to the login screen and blocked from returning here via middleware.
       </p>

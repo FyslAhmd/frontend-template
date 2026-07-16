@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-neutral-950 text-white font-sans overflow-hidden selection:bg-purple-500/30">
+    <div className="min-h-screen bg-background text-foreground font-sans overflow-hidden selection:bg-primary/30">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-overlay"></div>
       <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-purple-700/20 blur-[120px] pointer-events-none"></div>
