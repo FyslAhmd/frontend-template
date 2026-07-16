@@ -24,10 +24,19 @@ export default function LoginPage() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Simple logic to determine role from demo email
-    let role = 'user';
-    if (email.includes('admin')) role = 'admin';
-    else if (email.includes('manager')) role = 'manager';
+    let role = '';
+    if (email === 'admin@example.com' && password === 'admin123') {
+      role = 'admin';
+    } else if (email === 'manager@example.com' && password === 'manager123') {
+      role = 'manager';
+    } else if (email === 'user@example.com' && password === 'user123') {
+      role = 'user';
+    }
+
+    if (!role) {
+      toast.error('Invalid credentials. Please use the demo accounts.');
+      return;
+    }
 
     document.cookie = `auth_token=${role}; path=/; max-age=86400`;
     localStorage.setItem('user_role', role);
