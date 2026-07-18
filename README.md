@@ -1,6 +1,6 @@
 # Modern Next.js Frontend Template
 
-A production-ready, batteries-included Next.js 15+ frontend template designed to save developers 2-3 days of initial project setup. It comes pre-configured with the best modern tools for styling, state management, application layouts, and highly reusable components.
+A production-ready, batteries-included Next.js 15+ frontend template designed to save developers 2-3 days of initial project setup. It comes pre-configured with the best modern tools for styling, state management, application layouts, SEO, and highly reusable components.
 
 ## 🚀 Features & What's Included
 
@@ -42,6 +42,7 @@ This template provides a highly scalable foundation equipped with everything you
   - Pagination
   - Row Selection Checkboxes
   - Dynamic Column Visibility Dropdown
+- **Dynamic Forms (`<DynamicForm />`)**: A configuration-driven form builder powered by **React Hook Form** and **Zod**. Pass a schema and an array of field definitions, and it automatically renders accessible inputs, selects, radios, textareas, checkboxes, and even **drag-and-drop image uploads** with live previews!
 - **Global Modal (`<BaseModal />`)**: A highly reusable wrapper over Shadcn's Dialog primitive. It eliminates extensive boilerplate code, allowing developers to spawn accessible modals anywhere by simply passing `title`, `isOpen`, and `children`.
 
 ### 6. State Management & Data Fetching
@@ -49,6 +50,11 @@ This template provides a highly scalable foundation equipped with everything you
 - **Global State**: **Zustand** is pre-configured for lightweight, boilerplate-free global state (currently managing the sidebar toggle).
 - **Server State**: **TanStack React Query** is globally provided, ready to handle data fetching, caching, and background syncs.
 - **API Client**: A fully configured **Axios** client is provided (`services/api-client.ts`) with built-in request/response interceptors to handle auth tokens and global error toasts automatically.
+
+### 7. SEO & Performance
+
+- **Dynamic Metadata Configuration**: Includes a reusable `constructMetadata` helper (`lib/metadata.ts`) to effortlessly generate perfect Next.js metadata objects. It ensures uniform Titles, Descriptions, OpenGraph images, and Twitter cards across all routes.
+- **React Compiler Ready**: Pre-configured to be forward-compatible with React 19's optimizing compiler.
 
 ## 📂 Folder Structure Highlights
 
@@ -59,10 +65,10 @@ This template provides a highly scalable foundation equipped with everything you
 │   └── dashboard/     # Protected routes and dashboard layout shell
 ├── components/
 │   ├── layout/        # Sidebar and Header components
-│   ├── ui/            # Reusable primitives (DataTable, BaseModal, etc.)
+│   ├── ui/            # Reusable primitives (DataTable, DynamicForm, BaseModal)
 │   └── query-provider.tsx
 ├── data/              # Mock data and simulated API endpoints
-├── lib/               # Utility functions (e.g., utils.ts for Tailwind merge)
+├── lib/               # Utility functions (metadata generator, tailwind merge)
 ├── services/          # API configurations (e.g., pre-configured Axios client)
 ├── store/             # Global state management (Zustand)
 └── middleware.ts      # Edge middleware for route protection
@@ -82,4 +88,4 @@ This template provides a highly scalable foundation equipped with everything you
 
 ## 💡 How this saves you time
 
-By using this template, you skip the tedious configuration of global state, the pain of setting up React Query providers, the hassle of configuring Axios interceptors, building authentication layouts, enforcing middleware protection, creating boilerplate for Modals, and building advanced data tables from scratch. You can start building actual features from minute one.
+By using this template, you skip the tedious configuration of global state, the pain of setting up React Query providers, the hassle of configuring Axios interceptors, building authentication layouts, enforcing middleware protection, managing SEO tags, creating boilerplate for Modals, wiring complex dynamic forms, and building advanced data tables from scratch. You can start building actual features from minute one.
